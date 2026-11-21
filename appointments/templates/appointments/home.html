@@ -1,0 +1,16 @@
+{% extends 'appointments/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+ <div><span class="eyebrow">HEALTHCARE, MADE SIMPLE</span><h1>Book the care you<br><em>deserve.</em></h1>
+ <p>Find trusted doctors, choose a convenient time, and manage appointments in one place.</p>
+ <a class="button" href="{% url 'doctors' %}">Find a doctor →</a></div>
+ <div class="hero-art"><div class="cross">✚</div><div class="hero-note">Care that fits your life.</div></div>
+</section>
+<section class="section-head"><div><span class="eyebrow">OUR SPECIALISTS</span><h2>Meet our doctors</h2></div><a href="{% url 'doctors' %}">View all doctors →</a></section>
+<div class="doctor-grid">
+{% for doctor in doctors %}
+ <article class="doctor-card"><div class="avatar">{{ doctor.first_name|first|default:doctor.username|first|upper }}</div><span class="tag">{{ doctor.profile.specialization }}</span><h3>Dr. {{ doctor.get_full_name|default:doctor.username }}</h3><p>{{ doctor.profile.qualification|default:"Qualified medical professional" }}</p><p>{{ doctor.profile.experience_years }} years experience</p><a class="text-link" href="{% url 'doctor_detail' doctor.id %}">View profile →</a></article>
+{% empty %}<div class="empty">No doctors have registered yet. Create a doctor account to get started.</div>{% endfor %}
+</div>
+{% endblock %}

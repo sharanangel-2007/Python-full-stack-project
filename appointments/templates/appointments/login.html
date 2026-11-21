@@ -1,0 +1,3 @@
+{% extends 'appointments/base.html' %}{% block title %}Login{% endblock %}
+{% block content %}<div class="form-wrap"><div class="form-card narrow"><span class="eyebrow">WELCOME BACK</span><h1>Sign in</h1><p>Access your CarePoint dashboard.</p>
+<form method="post">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<label>{{ field.label }}</label>{{ field }}{{ field.errors }}{% endfor %}<button class="button full" type="submit">Login</button></form><p class="form-foot">New to CarePoint? <a href="{% url 'register' %}">Create account</a></p></div></div>{% endblock %}

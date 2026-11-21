@@ -1,0 +1,3 @@
+{% extends 'appointments/base.html' %}{% block title %}Book Appointment{% endblock %}
+{% block content %}<div class="form-wrap"><div class="form-card narrow"><span class="eyebrow">BOOK A VISIT</span><h1>Dr. {{ doctor.get_full_name|default:doctor.username }}</h1><p>{{ doctor.profile.specialization }} · ₹{{ doctor.profile.consultation_fee }}</p>
+<form method="post">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<label>{{ field.label }}</label>{{ field }}{{ field.errors }}{% endfor %}<button class="button full" type="submit">Request appointment</button></form><p class="form-foot">Your appointment will be pending until the doctor responds.</p></div></div>{% endblock %}
